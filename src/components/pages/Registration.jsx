@@ -1,10 +1,10 @@
 import React from 'react'
-import RegistrationForm from '../Forms/RegistrationForm'
+import RegistrationForm from '../forms/RegistrationForm'
 
 const Registration = () => {
   return (
     <div>
-        <RegistrationForm />
+        <RegistrationForm/>
     </div>
   )
 }

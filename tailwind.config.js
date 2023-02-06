@@ -4,11 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    colors:{
+    extend: {
+      colors:{
       "finsho-purple": '#5271ff',
       "finsho-purple-dark": '#435dd1'
     },
-    extend: {},
+    },
   },
   plugins: [],
 }
