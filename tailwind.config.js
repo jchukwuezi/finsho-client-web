@@ -5,7 +5,8 @@ module.exports = {
   ],
   theme: {
     colors:{
-      "finsho-purple": '#5271ff'
+      "finsho-purple": '#5271ff',
+      "finsho-purple-dark": '#435dd1'
     },
     extend: {},
   },

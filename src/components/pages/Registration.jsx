@@ -1,9 +1,11 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import RegistrationForm from '../Forms/RegistrationForm'
 
 const Registration = () => {
   return (
-    <div>Registration</div>
+    <div>
+        <RegistrationForm />
+    </div>
   )
 }
 

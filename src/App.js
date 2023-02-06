@@ -1,10 +1,14 @@
 import './App.css';
-import {Route, Router} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
+import Registration from './components/pages/Registration';
+
 
 function App() {
   return (
-    <div className="flex justify-center items-center bg-finsho-purple">
-      
+    <div>
+      <Routes>
+        <Route exact path='/' element = {<Registration />}/>
+      </Routes>
     </div>
   );
 }
