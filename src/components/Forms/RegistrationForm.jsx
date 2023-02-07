@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form'
 
 const RegistrationForm = () => {
   const {register, formState: {errors}, handleSubmit} = useForm();
-  const onSubmit = () => {
-
+  const onSubmit = (data) => {
+    
   }
 
   return (
@@ -32,10 +32,11 @@ const RegistrationForm = () => {
           placeholder='42 O Connell St, Dublin 1, Co.Dublin'
           autoFocus
           {...register('shopLocation', {
-            required: true
+            required: "Please enter a shop location"
           })}
           aria-invalid={errors.shopLocation ? "true" : "false"}
         />
+        {errors.shopLocation && <p role="alert" className='text-red-400'> {errors.shopLocation?.message} </p>}
 
         <label className="text-gray-600 font-medium block mt-4">Email Address</label>
         <input 
@@ -44,10 +45,15 @@ const RegistrationForm = () => {
           placeholder='johndoe@example.com'
           autoFocus
           {...register('emailAddress', {
-            required: true
+            required: "Please enter an email",
+            pattern: {
+              value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Please enter a valid email',
+            },
           })}
           aria-invalid={errors.emailAddress ? "true" : "false"}
         />
+        {errors.emailAddress && <p role="alert" className='text-red-400'> {errors.emailAddress?.message} </p>}
 
         <label className="text-gray-600 font-medium block mt-4">Password</label>
         <input 
@@ -57,12 +63,17 @@ const RegistrationForm = () => {
           placeholder='Enter password'
           autoFocus
           {...register('password', {
-            required: true
+            required: "Please enter a password",
+            minLength:{
+              value: 6,
+              message: "Miniumum password length is 6 characters"
+            }
           })}
           aria-invalid={errors.password ? "true" : "false"}
         />
+        {errors.password && <p role="alert" className='text-red-400'> {errors.password?.message} </p>}
 
-        <button type='submit' className='w-full bg-finsho-purple hover:bg-finsho-purple-dark text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4'>Submit</button>
+        <button type='submit' className='w-full bg-finsho-purple hover:bg-finsho-purple-dark text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4'>Register</button>
       </form>
   )
 }
