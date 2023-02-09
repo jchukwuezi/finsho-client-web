@@ -4,6 +4,7 @@ import Registration from './components/pages/Registration';
 import UploadProduct from './components/pages/UploadProduct';
 import Login from './components/pages/Login';
 import AddProducts from './components/pages/AddProducts';
+import Dashboard from './components/dashboard/Dashboard';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path='/upload' element = {<UploadProduct />}/>
         <Route path='/login' element = {<Login />}/>
         <Route path='/add/product/' element= {<AddProducts/>}/>
+        <Route path ='/dashboard' element = {<Dashboard />} />
       </Routes>
     </div>
   );
