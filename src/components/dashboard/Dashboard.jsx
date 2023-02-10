@@ -2,6 +2,9 @@ import React from 'react'
 import Sales from './sales/Sales'
 import AvgCartValue from './sales/AvgCartValue'
 import Transactions from './sales/Transactions'
+import TransactionNoChart from './sales/TransactionNoChart'
+import ShopCheckIns from './sales/ShopCheckIns'
+import MostPopularItem from './sales/MostPopularItem'
 
 const Dashboard = () => {
   return (
@@ -13,7 +16,17 @@ const Dashboard = () => {
                     <Sales />
                     <AvgCartValue />
                     <Transactions />
-                </div>    
+                </div>  
+                
+                <div className="mt-10 flex">
+                  <div>
+                    <TransactionNoChart />
+                  </div>
+                  <div className="flex-col">
+                    <ShopCheckIns />
+                    <MostPopularItem />
+                  </div>
+                </div>
             </div>
         </div>
     </div>

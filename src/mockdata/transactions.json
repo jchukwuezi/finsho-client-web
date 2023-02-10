@@ -1,0 +1,33 @@
+
+[
+        {
+            "month": "Jan",
+            "number": 1000
+        },
+
+        {
+            "month": "Feb",
+            "number": 550
+        },
+
+        {
+            "month": "Mar",
+            "number": 780
+        },
+
+        {
+            "month": "Apr",
+            "number": 652
+        },
+
+        
+        {
+            "month": "May",
+            "number": 900
+        },
+
+        {
+            "month": "Jun",
+            "number": 300
+        }
+]

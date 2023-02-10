@@ -1,0 +1,44 @@
+[
+            {
+                "image": "",
+                "name": "Brennans Bread",
+                "category": "Bread" ,
+                "brand": "Brennans",
+                "barcode": "" ,
+                "price": 1.49,
+                "sales": 5
+            },
+
+            {
+                "image": "",
+                "name": "Avanmore Milk (2L)",
+                "category": "Dairy" ,
+                "brand": "Milk",
+                "barcode":"" ,
+                "price": 2.19,
+                "sales" : 12
+            },
+
+
+            {
+                "image": "",
+                "name": "Coke Zero (500ml)",
+                "category": "Soft Drinks" ,
+                "brand": "Coca Cola",
+                "barcode":"" ,
+                "price": 1.49,
+                "sales": 13
+            },
+
+
+            {
+                "image": "",
+                "name": "Uncle Ben's Microwave (250g)",
+                "category": "Grains" ,
+                "brand": "Uncle Ben's",
+                "barcode": "",
+                "price": 2.19,
+                "sales": 12
+            }
+] 
+
