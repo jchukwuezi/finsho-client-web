@@ -6,10 +6,14 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-      "finsho-purple": '#5271ff',
-      "finsho-purple-dark": '#435dd1',
-      "finsho-white": '#f5f5f5'
-    },
+        "finsho-purple": '#5271ff',
+        "finsho-purple-dark": '#435dd1',
+        "finsho-white": '#f5f5f5'
+      },
+
+      fontFamily:{
+        sans: ['Inter', 'sans-serif']
+      }
     },
   },
   plugins: [],
