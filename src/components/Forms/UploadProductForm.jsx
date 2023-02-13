@@ -9,7 +9,7 @@ const UploadProductForm = () => {
 
   return (
     <form
-        className='max-w-xl m-auto py-10 mt-10 px-12'
+        className='max-w-xl m-auto py-10 mt-6 px-12'
         onSubmit={handleSubmit(onSubmit)}
     >
         <label className="text-gray-600 font-medium block mt-4">Upload Image</label>

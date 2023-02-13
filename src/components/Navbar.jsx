@@ -20,8 +20,8 @@ const Navbar = () => {
                     </div>
                     
                     <div className="hidden md:flex items-center space-x-1">
-                        <Link to={""} className='py-5 px-3 text-finsho-white hover:underline'> Dashboard </Link>
-                        <Link to={""} className='py-2 px-3 bg-finsho-white text-finsho-purple rounded transition duration 300'> Add Products </Link>
+                        <Link to={"/dashboard"} className='py-5 px-3 text-finsho-white hover:underline'> Dashboard </Link>
+                        <Link to={"/upload"} className='py-2 px-3 bg-finsho-white text-finsho-purple rounded transition duration 300'> Add Products </Link>
                     </div>
 
                 </div>

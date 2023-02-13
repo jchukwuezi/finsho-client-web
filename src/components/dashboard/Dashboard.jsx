@@ -13,7 +13,7 @@ const Dashboard = () => {
     <div>
       <Navbar />
       <div className="flex flex-auto flex-col max-w-full pt-20 lg:pt-0">
-          <div className='container xl:max-w-7xl mx-auto px-4 py-8 lg:px-8 lg:py-12 space-y-10 lg:space-y-16'>
+          <div className='container xl:max-w-7xl  px-4 py-8 lg:px-8 lg:py-12 space-y-10 lg:space-y-16'>
               <div className="flex flex-col mx-auto w-full min-h-screen lg:pl-64">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8">
                       <Sales />
