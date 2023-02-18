@@ -9,7 +9,11 @@ const UploadProductForm = () => {
     
     const {register, formState: {errors}, handleSubmit} = useForm();
     const onSubmit = (data) => {
-        const {productName, productCategory, productBrand, productBarcode, productPrice, productDescription} = data;
+        console.log(data)
+        //const url = URL.createObjectURL(files[0].url)
+        console.log(files)
+        //const {productName, productCategory, productBrand, productBarcode, productPrice, productDescription} = data;
+        /*
         fetch("http://localhost:4000/api/products/create", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -33,6 +37,7 @@ const UploadProductForm = () => {
             const successMsg = await res.text()
             notify(successMsg)
         })
+        */
     }
 
     const uploadImg = async(e) =>{
