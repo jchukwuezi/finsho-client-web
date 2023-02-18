@@ -1,10 +1,37 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { notify } from '../toasts/toasts';
+import {useNavigate} from 'react-router-dom'
 
 const RegistrationForm = () => {
+  const navigate = useNavigate()
   const {register, formState: {errors}, handleSubmit} = useForm();
-  const onSubmit = (data) => {
-    
+  const onSubmit = async (data) => {
+    const {shopName, shopLocation, emailAddress, password} = data;
+    fetch("http://localhost:4000/api/shops/register", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            name: shopName,
+            location: shopLocation,
+            email: emailAddress,
+            password: password
+        })
+    })
+    .then(async res => {
+        if(!res.ok){
+            const errorMsg = await res.text()
+            notify(errorMsg)
+        }
+
+        const successMsg = await res.text()
+        notify(successMsg)
+        setTimeout(()=>{
+          navigate('/login')
+        }, 5000)
+        //navigate('/login')
+    })
+
   }
 
   return (

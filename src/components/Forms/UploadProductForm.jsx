@@ -1,11 +1,74 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useForm} from 'react-hook-form'
+import uuid from 'react-uuid'
+import { notify } from '../toasts/toasts'
 
 const UploadProductForm = () => {
+    const [files, setFiles] = useState([])
+    const [images, setImages] = useState([])
+    
     const {register, formState: {errors}, handleSubmit} = useForm();
     const onSubmit = (data) => {
+        const {productName, productCategory, productBrand, productBarcode, productPrice, productDescription} = data;
+        fetch("http://localhost:4000/api/products/create", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            credentials: 'include',
+            body: JSON.stringify({
+                image: files,
+                name: productName,
+                description: productDescription,
+                brand: productBrand,
+                price: productPrice,
+                barcode: productBarcode,
+                category: productCategory
+            })
+        })
+        .then(async res => {
+            if(!res.ok){
+                const errorMsg = await res.text()
+                notify(errorMsg)
+            }
 
+            const successMsg = await res.text()
+            notify(successMsg)
+        })
     }
+
+    const uploadImg = async(e) =>{
+        const file = e.target.files[0];
+        if(file){
+            console.log("e---image", files, images)
+        }
+
+        setImages([...images, (await readFileAsync(file))])
+        setFiles([...files, file])
+    }
+
+    //function to read the file using promises
+    const readFileAsync = (file) =>{
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () =>{
+                resolve({
+                    id: uuid(),
+                    url: reader.result,
+                    type: "image"
+                })
+            }
+
+            reader.onerror = reject;
+            reader.readAsDataURL(file)
+        })
+    }
+
+    const handleSaveImg = () =>{
+        console.log(files)
+    }
+
+
+
+
 
   return (
     <form
@@ -13,10 +76,16 @@ const UploadProductForm = () => {
         onSubmit={handleSubmit(onSubmit)}
     >
         <label className="text-gray-600 font-medium block mt-4">Upload Image</label>
-        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50
+        <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50
          dark:text-gray-400 focus:outline-none dark:bg-gray-700
          dark:border-gray-600
-         dark:placeholder-gray-400" id="file_input" type="file" />
+         dark:placeholder-gray-400" id="productImage" type="file"
+         name="productImage"
+         accept="image/*"
+         {...register('productImage')}
+         onChange={uploadImg}
+         />
+
 
         <label className="text-gray-600 font-medium block mt-4">Product Name</label>
         <input 
@@ -24,12 +93,25 @@ const UploadProductForm = () => {
         id="productName"
         placeholder='Product Name'
         autoFocus
-        {...register('shopName',{
+        {...register('productName',{
             required: "Please enter a product name"
         })}
         aria-invalid={errors.productName ? "true" : "false"}
         />
         {errors.productName && <p role="alert" className='text-red-400'> {errors.productName?.message} </p>}
+
+        <label className="text-gray-600 font-medium block mt-4">Product Brand</label>
+        <input 
+        className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700"
+        id="productBrand"
+        placeholder='Product Brand'
+        autoFocus
+        {...register('productBrand',{
+            required: "Please enter a product brand"
+        })}
+        aria-invalid={errors.productBrand ? "true" : "false"}
+        />
+        {errors.productBrand && <p role="alert" className='text-red-400'> {errors.productBrand?.message} </p>}
         
         <label className="text-gray-600 font-medium block mt-4">Product Category</label>
         <input 
@@ -84,6 +166,7 @@ const UploadProductForm = () => {
             required: "Please enter a product description"
         })}
         />
+        {errors.productDescription && <p role="alert" className='text-red-400'> {errors.productDescription?.message} </p>}
 
         <button type='submit' className='w-full bg-finsho-purple hover:bg-finsho-purple-dark text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4'>Add Product</button>
 
