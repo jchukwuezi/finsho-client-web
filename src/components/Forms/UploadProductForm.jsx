@@ -4,22 +4,17 @@ import uuid from 'react-uuid'
 import { notify } from '../toasts/toasts'
 
 const UploadProductForm = () => {
-    const [files, setFiles] = useState([])
-    const [images, setImages] = useState([])
-    
+    const [image, setImage] = useState("")
     const {register, formState: {errors}, handleSubmit} = useForm();
     const onSubmit = (data) => {
         console.log(data)
-        //const url = URL.createObjectURL(files[0].url)
-        console.log(files)
-        //const {productName, productCategory, productBrand, productBarcode, productPrice, productDescription} = data;
-        /*
+        const {productImage, productName, productCategory, productBrand, productBarcode, productPrice, productDescription} = data;
         fetch("http://localhost:4000/api/products/create", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             credentials: 'include',
             body: JSON.stringify({
-                image: files,
+                image: image,
                 name: productName,
                 description: productDescription,
                 brand: productBrand,
@@ -37,43 +32,22 @@ const UploadProductForm = () => {
             const successMsg = await res.text()
             notify(successMsg)
         })
-        */
     }
+    
 
-    const uploadImg = async(e) =>{
-        const file = e.target.files[0];
-        if(file){
-            console.log("e---image", files, images)
-        }
+  const handleImage = (e) =>{
+    const file = e.target.files[0]
+    setFileToBase(file)
+    console.log(file)
+  }
 
-        setImages([...images, (await readFileAsync(file))])
-        setFiles([...files, file])
+  const setFileToBase = (file) =>{
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () =>{
+        setImage(reader.result.toString())
     }
-
-    //function to read the file using promises
-    const readFileAsync = (file) =>{
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () =>{
-                resolve({
-                    id: uuid(),
-                    url: reader.result,
-                    type: "image"
-                })
-            }
-
-            reader.onerror = reject;
-            reader.readAsDataURL(file)
-        })
-    }
-
-    const handleSaveImg = () =>{
-        console.log(files)
-    }
-
-
-
-
+  }
 
   return (
     <form
@@ -88,7 +62,7 @@ const UploadProductForm = () => {
          name="productImage"
          accept="image/*"
          {...register('productImage')}
-         onChange={uploadImg}
+         onChange={handleImage}
          />
 
 
@@ -150,6 +124,7 @@ const UploadProductForm = () => {
         className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700"
         id="productPrice"
         type="number"
+        step="0.01"
         placeholder='€'
         autoFocus
         {...register('productPrice',{
