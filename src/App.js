@@ -1,16 +1,19 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom'
+/*
 import Registration from './components/pages/Registration';
 import UploadProduct from './components/pages/UploadProduct';
 import Login from './components/pages/Login';
 import AddProducts from './components/pages/AddProducts';
 import Dashboard from './components/dashboard/Dashboard';
+*/
+import Dashboard from './chakra/components/Dashboard/Dashboard';
 import PrivateRoutes from './utils/PrivateRoutes';
-
 
 function App() {
   return (
     <div>
+      {/*
       <Routes>
         <Route exact path='/' element = {<Registration />}/>
         <Route path='/login' element = {<Login />}/>
@@ -20,7 +23,15 @@ function App() {
           <Route path ='/dashboard' element = {<Dashboard />} />
         </Route>
       </Routes>
-    </div>
+      */}
+        <div>
+          <Routes>
+            <Route exact path='/' element = {<Dashboard/>} />
+              <Route element={<PrivateRoutes />}> 
+              </Route>
+          </Routes>
+        </div>
+    </div>  
   );
 }
 

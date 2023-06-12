@@ -6,12 +6,27 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { ChakraProvider } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
+
+const theme = extendTheme({
+  fonts: {
+    heading: `'Inter', sans-serif`,
+    body: `'Inter', sans-serif`
+  },
+
+  colors: {
+    purple: '#8A56AC',
+  }
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
   <BrowserRouter>
-    <App />
+    <ChakraProvider theme={theme}>
+      <App />
+    </ChakraProvider>
     <ToastContainer />
   </BrowserRouter>  
   </React.StrictMode>
