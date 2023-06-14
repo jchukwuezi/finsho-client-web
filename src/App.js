@@ -8,6 +8,7 @@ import AddProducts from './components/pages/AddProducts';
 import Dashboard from './components/dashboard/Dashboard';
 */
 import Dashboard from './chakra/components/Dashboard/Dashboard';
+import LandingPage from './chakra/pages/LandingPage';
 import PrivateRoutes from './utils/PrivateRoutes';
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
       */}
         <div>
           <Routes>
-            <Route exact path='/' element = {<Dashboard/>} />
+            <Route exact path='/' element = {<LandingPage />} />
               <Route element={<PrivateRoutes />}> 
               </Route>
           </Routes>

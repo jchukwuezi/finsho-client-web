@@ -8,7 +8,7 @@ import {
   FormHelperText,
   Button,
 } from "@chakra-ui/react";
-import { notify } from "../toasts/toasts";
+//import { notify } from "../toasts/toasts";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
@@ -57,7 +57,7 @@ const LoginForm = () => {
       <FormControl mt={4}>
         <FormLabel> Shop Email </FormLabel>
         <Input
-          id="shopEmail"
+          id="shopEmailLogin"
           type="email"
           placeholder="test@example.com"
           autoFocus
@@ -79,7 +79,7 @@ const LoginForm = () => {
       <FormControl mt={4}>
         <FormLabel> Password </FormLabel>
         <Input
-          id="shopPassword"
+          id="shopPasswordLogin"
           type="password"
           autoFocus
           {...register("shopPassword", {

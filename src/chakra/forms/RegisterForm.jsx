@@ -8,7 +8,7 @@ import {
   FormHelperText,
   Button,
 } from "@chakra-ui/react";
-import { notify } from "../toasts/toasts";
+//import { notify } from "../toasts/toasts";
 import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
@@ -35,11 +35,11 @@ const RegisterForm = () => {
     }).then(async (res) => {
       if (!res.ok) {
         const errorMsg = await res.text();
-        notify(errorMsg);
+        //notify(errorMsg);
       }
 
       const successMsg = await res.text();
-      notify(successMsg);
+      //notify(successMsg);
       setTimeout(() => {
         navigate("/login");
       }, 5000);
