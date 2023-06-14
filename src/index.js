@@ -8,6 +8,7 @@ import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { ChakraProvider } from '@chakra-ui/react';
 import { extendTheme } from '@chakra-ui/react';
+import { Container } from '@chakra-ui/react';
 
 const theme = extendTheme({
   fonts: {
@@ -25,7 +26,9 @@ root.render(
   <React.StrictMode>
   <BrowserRouter>
     <ChakraProvider theme={theme}>
-      <App />
+      <Container margin="auto" maxW="62rem" width="85%">
+        <App />
+      </Container>
     </ChakraProvider>
     <ToastContainer />
   </BrowserRouter>  

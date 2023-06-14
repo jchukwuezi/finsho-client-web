@@ -9,7 +9,6 @@ import MostPopularPromotion from "./sales/MostPopularPromotion";
 
 const Dashboard = () => {
   return (
-    <Container margin="auto" maxW="62rem" width="85%">
       <Flex flexDirection="column" pt={{ base: "120px", md: "75px" }}>
         <SimpleGrid columns={{ sm: "1", md: "3", xl: "3" }} spacing="24px">
           <AvgCartValue />
@@ -27,7 +26,6 @@ const Dashboard = () => {
           
         </Grid>
       </Flex>
-    </Container>
   );
 };
 
