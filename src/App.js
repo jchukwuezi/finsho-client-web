@@ -9,6 +9,7 @@ import Dashboard from './components/dashboard/Dashboard';
 */
 import Dashboard from './chakra/components/Dashboard/Dashboard';
 import LandingPage from './chakra/pages/LandingPage';
+import UploadProductPage from './chakra/pages/UploadProductPage';
 import PrivateRoutes from './utils/PrivateRoutes';
 
 function App() {

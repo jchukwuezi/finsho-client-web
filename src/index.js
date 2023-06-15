@@ -16,9 +16,11 @@ const theme = extendTheme({
     body: `'Inter', sans-serif`
   },
 
+  /*
   colors: {
     purple: '#8A56AC',
   }
+  */
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

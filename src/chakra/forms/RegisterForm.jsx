@@ -149,7 +149,7 @@ const RegisterForm = () => {
         </FormErrorMessage>
       </FormControl>
 
-      <Button mt={4} color="purple" isLoading={isSubmitting} type="submit">
+      <Button mt={4} colorScheme="purple" isLoading={isSubmitting} type="submit">
         Create Account
       </Button>
     </form>

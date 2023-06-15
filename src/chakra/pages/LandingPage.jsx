@@ -34,7 +34,7 @@ const LandingPage = () => {
         align={"center"}
         alignSelf={"center"}
       > 
-        <Tabs>
+        <Tabs align="center" colorScheme='purple'>
             <TabList>
                 <Tab>Register</Tab>
                 <Tab> Login </Tab>
