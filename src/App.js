@@ -11,6 +11,8 @@ import Dashboard from './chakra/components/Dashboard/Dashboard';
 import LandingPage from './chakra/pages/LandingPage';
 import UploadProductPage from './chakra/pages/UploadProductPage';
 import PrivateRoutes from './utils/PrivateRoutes';
+import TrueLayerSuccessPage from './chakra/pages/TrueLayerSuccessPage';
+import TrueLayerTestPage from './chakra/pages/TrueLayerTestPage';
 
 function App() {
   return (
@@ -28,7 +30,8 @@ function App() {
       */}
         <div>
           <Routes>
-            <Route exact path='/' element = {<LandingPage />} />
+            <Route exact path='/' element = {<TrueLayerTestPage />} />
+            <Route exact path='/truelayer/success' element = {< TrueLayerSuccessPage/>} />
               <Route element={<PrivateRoutes />}> 
               </Route>
           </Routes>
