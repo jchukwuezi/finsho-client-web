@@ -22,7 +22,7 @@ const RegisterForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const { shopName, shopAddress, shopEmail, shopPassword } = data;
+    const { shopName, shopAddress, shopEmail, shopIban, shopPassword } = data;
     fetch("http://localhost:4000/api/shops/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -30,6 +30,7 @@ const RegisterForm = () => {
         name: shopName,
         location: shopAddress,
         email: shopEmail,
+        iban: shopIban,
         password: shopPassword,
       }),
     }).then(async (res) => {
@@ -110,6 +111,45 @@ const RegisterForm = () => {
       </FormControl>
 
       <FormControl mt={4}>
+        <FormLabel> Shop Iban </FormLabel>
+        <Input
+          type="text"
+          id="shopIban"
+          placeholder="Eg: IE30BOFI900017482251"
+          autoFocus
+          {...register("shopIban", {
+            required: "Please enter the iban of your shop",
+          })}
+          aria-invalid={errors.shopIban ? "true" : "false"}
+        />
+        <FormErrorMessage>
+          {errors.shopIban && errors.shopIban?.message}
+        </FormErrorMessage>
+        <FormHelperText>
+          {" "}
+          Entering your Iban allows you to be able to collect payments from your
+          shoppers. store.
+        </FormHelperText>
+      </FormControl>
+
+      <FormControl mt={4}>
+        <FormLabel> Shop Iban </FormLabel>
+        <Input
+          type="text"
+          id="shopAccountName"
+          placeholder="Bill's Grocer"
+          autoFocus
+          {...register("shopAccountName", {
+            required: "Please enter the name of the bank account associated your shop",
+          })}
+          aria-invalid={errors.shopAccountName ? "true" : "false"}
+        />
+        <FormErrorMessage>
+          {errors.shopAccountName && errors.shopAccountName?.message}
+        </FormErrorMessage>
+      </FormControl>
+
+      <FormControl mt={4}>
         <FormLabel> Password </FormLabel>
         <Input
           id="shopPassword"
@@ -149,7 +189,12 @@ const RegisterForm = () => {
         </FormErrorMessage>
       </FormControl>
 
-      <Button mt={4} colorScheme="purple" isLoading={isSubmitting} type="submit">
+      <Button
+        mt={4}
+        colorScheme="purple"
+        isLoading={isSubmitting}
+        type="submit"
+      >
         Create Account
       </Button>
     </form>
