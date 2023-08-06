@@ -4,10 +4,11 @@ import { mainStore } from '../store/store'
 
 const PrivateRoutes = () => {
     const isAuth = mainStore((state) => state.isAuth)
+    console.log("is auth is " + isAuth)
 
 
     return(
-        isAuth ? <Outlet /> : <Navigate to={"/login"} />
+        isAuth ? <Outlet /> : <Navigate to={"/"} />
     )
 }
 

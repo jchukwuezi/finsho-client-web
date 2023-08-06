@@ -41,7 +41,7 @@ function App() {
 
       <Routes>
         <Route exact path='/' element = {<LandingPage />}/>
-        <Route>
+        <Route element={<PrivateRoutes />}>
           <Route path='/add/product' element={<UploadProductPage/>}/>
           <Route path='/truelayer' element={<TrueLayerTestPage/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>

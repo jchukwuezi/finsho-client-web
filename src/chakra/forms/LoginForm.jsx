@@ -9,7 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import jwtDecode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 import { mainStore } from "../../store/store";
 import {notify} from "../components/toasts/toasts"
 
@@ -17,8 +17,6 @@ import {notify} from "../components/toasts/toasts"
 const LoginForm = () => {
   const navigate = useNavigate();
   const REACT_APP_BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
-  console.log(REACT_APP_BACKEND_API_URL);
-
   const setToken = mainStore((state) => state.setToken)
 
   const {
@@ -29,7 +27,6 @@ const LoginForm = () => {
 
   const onSubmit = async (data) => {
     const {shopEmail, shopPassword } = data;
-    alert(JSON.stringify(data));
 
     const response = await fetch(`${REACT_APP_BACKEND_API_URL}/shops/login`, {
         method: 'POST',
@@ -42,11 +39,11 @@ const LoginForm = () => {
     })
 
     const resData = await response.json()
+    //console.log("Response data " + JSON.stringify(resData));
     if (response.ok){
       const {token, message} = resData;
-      const shopToken = jwtDecode(token);
-      setToken(shopToken);
-      notify(message);
+      setToken(token);
+      //notify(message);
       navigate("/dashboard")
     }
     else{
@@ -54,33 +51,6 @@ const LoginForm = () => {
       notify(errorToast)
     }
     
-    /*
-    fetch("http://localhost:4000/api/shops/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({
-        email: emailAddress,
-        password: password,
-      }),
-    }).then(async (res) => {
-        /*
-        if (!res.ok) {
-            const errorMsg = await res.text();
-            notify(errorMsg);
-        } else if (res.status === 202) {
-            const stripeRedirect = await res.json();
-            const onboardUrl = stripeRedirect.onboard_url;
-            notify(stripeRedirect.message);
-            window.location.href = onboardUrl;
-        } else {
-            const successMsg = await res.text();
-            notify(successMsg);
-        }
-         //
-       
-    });
-    */
   };
 
   return (
