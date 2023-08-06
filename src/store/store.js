@@ -24,60 +24,11 @@ export const mainStore = create ((set)=>({
             console.log("token passed in was null")   
         }
      
-    }
-
-
-    //function to authenticate user
-    /*
-    setAuth: (isAuth, token) => {
-        if(isAuth){
-            const shop = jwtDecode(token)
-            set({
-                isAuth,
-                shop: {
-                    name: shop.name,
-                    email: shop.email,
-                    id: shop.id
-                },
-                token
-            })        
-        }
-
-        else{
-            set({isAuth, shop: null, token: null})
-        }
     },
 
 
     logout: () => {
-        set({ isAuthenticated: false, user: null, token: null });
+        set({ isAuth: false, token: null, name: '', email: '', id: '' });
     }
-    */ 
-
-    /*
-    shop: {
-        id: '',
-        name: '',
-        email: ''
-    },
-
-    token: '',
-    isAuth: false,
-
-    setShop : () => set((state) => ({
-        shop: {
-            ...state.shop,
-            id: state.id,
-            name: state.name,
-            email: state.email
-        }
-    })),
-
-    setTokenAndAuth: () => set((state) => ({
-        token: state.token,
-        isAuth: state.isAuth
-    }))
-    */
     
-
 }))
