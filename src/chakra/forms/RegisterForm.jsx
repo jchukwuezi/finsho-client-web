@@ -8,7 +8,7 @@ import {
   FormHelperText,
   Button,
 } from "@chakra-ui/react";
-//import { notify } from "../toasts/toasts";
+import { notify } from "../components/toasts/toasts";
 import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
@@ -22,13 +22,14 @@ const RegisterForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const { shopName, shopAddress, shopEmail, shopIban, shopPassword } = data;
+    const { shopName, shopAddress, shopEmail, shopIban, shopAccountName, shopPassword } = data;
     fetch("http://localhost:4000/api/shops/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: shopName,
         location: shopAddress,
+        accountName: shopAccountName,
         email: shopEmail,
         iban: shopIban,
         password: shopPassword,
@@ -40,10 +41,14 @@ const RegisterForm = () => {
       }
 
       const successMsg = await res.text();
-      //notify(successMsg);
+      notify(successMsg);
+
+      /*
       setTimeout(() => {
         navigate("/login");
       }, 5000);
+      */
+
     });
   };
 
@@ -133,7 +138,7 @@ const RegisterForm = () => {
       </FormControl>
 
       <FormControl mt={4}>
-        <FormLabel> Shop Iban </FormLabel>
+        <FormLabel> Shop Acccount Name </FormLabel>
         <Input
           type="text"
           id="shopAccountName"

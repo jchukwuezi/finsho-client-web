@@ -28,6 +28,7 @@ function App() {
         </Route>
       </Routes>
       */}
+      {/*
         <div>
           <Routes>
             <Route exact path='/' element = {<TrueLayerTestPage />} />
@@ -36,6 +37,16 @@ function App() {
               </Route>
           </Routes>
         </div>
+    */}
+
+      <Routes>
+        <Route exact path='/' element = {<LandingPage />}/>
+        <Route>
+          <Route path='/add/product' element={<UploadProductPage/>}/>
+          <Route path='/truelayer' element={<TrueLayerTestPage/>}/>
+          <Route path='/dashboard' element={<Dashboard/>}/>
+        </Route>
+      </Routes>
     </div>  
   );
 }

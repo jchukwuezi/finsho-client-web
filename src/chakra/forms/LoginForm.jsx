@@ -8,21 +8,52 @@ import {
   FormHelperText,
   Button,
 } from "@chakra-ui/react";
-//import { notify } from "../toasts/toasts";
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
+import { mainStore } from "../../store/store";
+import {notify} from "../components/toasts/toasts"
+
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const REACT_APP_BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
+  console.log(REACT_APP_BACKEND_API_URL);
+
+  const setToken = mainStore((state) => state.setToken)
+
   const {
     register,
     formState: { errors, isSubmitting },
     handleSubmit
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const {shopEmail, shopPassword } = data;
     alert(JSON.stringify(data));
 
+    const response = await fetch(`${REACT_APP_BACKEND_API_URL}/shops/login`, {
+        method: 'POST',
+        headers: { 'Content-Type' : 'application/json'},
+        redentials: 'include',
+        body: JSON.stringify({
+            email: shopEmail,
+            password: shopPassword
+        })
+    })
+
+    const resData = await response.json()
+    if (response.ok){
+      const {token, message} = resData;
+      const shopToken = jwtDecode(token);
+      setToken(shopToken);
+      notify(message);
+      navigate("/dashboard")
+    }
+    else{
+      const errorToast = await response.text()
+      notify(errorToast)
+    }
+    
     /*
     fetch("http://localhost:4000/api/shops/login", {
       method: "POST",

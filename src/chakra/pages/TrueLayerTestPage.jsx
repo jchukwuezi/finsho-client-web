@@ -26,6 +26,18 @@ const TrueLayerTestPage = () => {
     });
   };
 
+  const createPayment = () => {
+    fetch("http://localhost:4000/api/truelayer/createPayment",{
+      method: "POST",
+        headers: {"Content-Type": "application/json"},
+        credentials: 'include',
+    })
+    .then(async (res) => {
+      const data = await res.json()
+      console.log(data);
+    });
+  };
+
   return (
     <Stack
       as={Box}
@@ -59,6 +71,12 @@ const TrueLayerTestPage = () => {
           signRequest()
         }}>
           Sign Request
+        </Button>
+
+        <Button colorScheme="purple" onClick={() => {
+          createPayment()
+        }}>
+          Create Payment
         </Button>
       </Stack>
     </Stack>

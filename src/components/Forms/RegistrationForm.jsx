@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { notify } from '../toasts/toasts';
+import { notify } from '../../chakra/components/toasts/toasts';
 import {useNavigate} from 'react-router-dom'
 
 const RegistrationForm = () => {
@@ -26,9 +26,12 @@ const RegistrationForm = () => {
 
         const successMsg = await res.text()
         notify(successMsg)
+
+        /*
         setTimeout(()=>{
           navigate('/login')
         }, 5000)
+        */
         //navigate('/login')
     })
 

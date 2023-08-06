@@ -1,9 +1,12 @@
 import React from 'react'
 import logo from '../assets/finsho-logo.png'
 import {Link} from 'react-router-dom'
+import { mainStore } from '../store/store'
+
 
 const Navbar = () => {
-  const accountLoggedIn = `Tom's Grocery`  
+  const accountLoggedIn = mainStore((state) => state.name)  
+
   return (
     <nav className="bg-finsho-purple">
         <div className="max-w-6xl mx-auto px-4">

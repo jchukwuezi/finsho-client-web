@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {useNavigate} from 'react-router-dom'
-import { notify } from '../toasts/toasts'
+import { notify } from '../../chakra/components/toasts/toasts'
 
 const LoginForm = () => {
   const [onboardUrl, setOnboardUrl] = useState("")
   const {register, formState: {errors}, handleSubmit} = useForm();
+  const BACKEND_API_URL = process.env.BACKEND_API_URL;
 
   const onSubmit = (data) => {
     const {emailAddress, password} = data;
@@ -22,13 +23,6 @@ const LoginForm = () => {
         if(!res.ok){
             const errorMsg = await res.text()
             notify(errorMsg)          
-        }
-
-        else if(res.status === 202){
-          const stripeRedirect = await res.json()
-          const onboardUrl = stripeRedirect.onboard_url
-          notify(stripeRedirect.message)
-          window.location.href = onboardUrl
         }
 
         else{
