@@ -10,11 +10,15 @@ import Dashboard from './components/dashboard/Dashboard';
 import Dashboard from './chakra/components/Dashboard/Dashboard';
 import LandingPage from './chakra/pages/LandingPage';
 import UploadProductPage from './chakra/pages/UploadProductPage';
-import PrivateRoutes from './utils/PrivateRoutes';
+import ProtectedRoute from './utils/ProtectedRoutes';
 import TrueLayerSuccessPage from './chakra/pages/TrueLayerSuccessPage';
 import TrueLayerTestPage from './chakra/pages/TrueLayerTestPage';
+import { mainStore } from './store/store';
 
 function App() {
+
+  const isAuth = mainStore((state) => state.isAuth)
+
   return (
     <div>
       {/*
@@ -41,7 +45,7 @@ function App() {
 
       <Routes>
         <Route exact path='/' element = {<LandingPage />}/>
-        <Route element={<PrivateRoutes />}>
+        <Route element={<ProtectedRoute isAllowed={isAuth}/>}>
           <Route path='/add/product' element={<UploadProductPage/>}/>
           <Route path='/truelayer' element={<TrueLayerTestPage/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>

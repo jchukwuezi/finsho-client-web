@@ -11,7 +11,6 @@ import { mainStore } from "../../../store/store";
 const Dashboard = () => {
 
   const name = mainStore((state) => state.name)
-  console.log("Username from state " + name)
 
   return (
       <Flex flexDirection="column" pt={{ base: "120px", md: "75px" }}>
