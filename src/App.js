@@ -7,12 +7,14 @@ import Login from './components/pages/Login';
 import AddProducts from './components/pages/AddProducts';
 import Dashboard from './components/dashboard/Dashboard';
 */
-import Dashboard from './chakra/components/Dashboard/Dashboard';
-import LandingPage from './chakra/pages/LandingPage';
-import UploadProductPage from './chakra/pages/UploadProductPage';
+
+import Dashboard from './components/dashboard/Dashboard';
+import LandingPage from './components/pages/LandingPage';
+import UploadProductPage from './components/pages/UploadProductPage';
 import ProtectedRoute from './utils/ProtectedRoutes';
-import TrueLayerSuccessPage from './chakra/pages/TrueLayerSuccessPage';
-import TrueLayerTestPage from './chakra/pages/TrueLayerTestPage';
+import TrueLayerSuccessPage from './components/pages/TrueLayerSuccessPage';
+import TrueLayerTestPage from './components/pages/TrueLayerTestPage';
+
 import { mainStore } from './store/store';
 
 function App() {
