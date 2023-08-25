@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 //import { notify } from "../toasts/toasts";
 import { useNavigate } from "react-router-dom";
+import { FINSHO_COLORS } from "../../utils/globalStyles";
 
 const UploadProductForm = () => {
   const [image, setImage] = useState("")
@@ -157,7 +158,7 @@ const UploadProductForm = () => {
           size="sm"
           autoFocus
           {...register("productDescription", {
-            required: "Please enter a product description",
+            required: "SPlease enter a product description",
           })}
           aria-invalid={errors.productDescription ? "true" : "false"}
         />
@@ -168,7 +169,8 @@ const UploadProductForm = () => {
 
       <Button
         mt={4}
-        colorScheme="purple"
+        bgColor={FINSHO_COLORS.purple}
+        color={FINSHO_COLORS.white}
         isLoading={isSubmitting}
         type="submit"
       >

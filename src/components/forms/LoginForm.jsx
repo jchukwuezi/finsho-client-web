@@ -11,8 +11,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { mainStore } from "../../store/store";
-import {notify} from "../components/toasts/toasts"
-
+import { notify } from "../toasts/toasts";
+import { FINSHO_COLORS } from "../../utils/globalStyles";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -98,7 +98,7 @@ const LoginForm = () => {
       </FormControl>
 
 
-      <Button mt={4} colorScheme="purple" isLoading={isSubmitting} type="submit">
+      <Button mt={4} colorScheme={FINSHO_COLORS.purple} isLoading={isSubmitting} type="submit">
         Login
       </Button>
     </form>

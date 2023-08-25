@@ -28,9 +28,7 @@ root.render(
   <React.StrictMode>
   <BrowserRouter>
     <ChakraProvider theme={theme}>
-      <Container margin="auto" maxW="62rem" width="85%">
-        <App />
-      </Container>
+      <App />
     </ChakraProvider>
     <ToastContainer />
   </BrowserRouter>  

@@ -1,25 +1,30 @@
 import React from "react";
-import { Container, Flex, Grid, Heading, Image, SimpleGrid } from "@chakra-ui/react";
+import {
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  Image,
+  SimpleGrid,
+} from "@chakra-ui/react";
 
 import AvgCartValue from "./sales/AvgCartValue";
 import ShopCheckIns from "./sales/ShopCheckIns";
 import TotalSales from "./sales/TotalSales";
 import MostPopularItem from "./sales/MostPopularItem";
 import MostPopularPromotion from "./sales/MostPopularPromotion";
-import { mainStore } from "../../../store/store";
+import { mainStore } from "../../store/store";
+import Navbar from "../Navbar";
 
 const Dashboard = () => {
-
-  const name = mainStore((state) => state.name)
-
   return (
+    <Navbar>
       <Flex flexDirection="column" pt={{ base: "120px", md: "75px" }}>
-        <Heading 
+        <Heading
           fontWeight={600}
           fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
-          textAlign='center'
+          textAlign="center"
         >
-          {name}'s Dashboard
         </Heading>
         <SimpleGrid columns={{ sm: "1", md: "3", xl: "3" }} spacing="24px">
           <AvgCartValue />
@@ -34,9 +39,9 @@ const Dashboard = () => {
         >
           <MostPopularItem />
           <MostPopularPromotion />
-          
         </Grid>
       </Flex>
+    </Navbar>
   );
 };
 

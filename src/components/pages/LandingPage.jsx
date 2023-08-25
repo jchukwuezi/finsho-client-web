@@ -7,53 +7,58 @@ import {
   Tab,
   TabPanels,
   TabPanel,
-  TabList
+  TabList,
+  Container
 } from "@chakra-ui/react";
 import LoginForm from "../forms/LoginForm";
 import RegisterForm from "../forms/RegisterForm";
 
+
+
 const LandingPage = () => {
   return (
-    <Stack
-      as={Box}
-      textAlign={"center"}
-      spacing={{ base: 8, md: 14 }}
-      py={{ base: 20, md: 36 }}
-    >
-      <Heading
-        fontWeight={600}
-        fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
-        lineHeight={"110%"}
-      >
-        Improving the in-store shopping experience in grocery stores for both the retailer and the consumer.
-      </Heading>
-
+    <Container margin="auto" maxW="62rem" width="85%">
       <Stack
-        direction={"column"}
-        spacing={3}
-        align={"center"}
-        alignSelf={"center"}
-      > 
-        <Tabs align="center" colorScheme='purple'>
-            <TabList>
-                <Tab>Register</Tab>
-                <Tab> Login </Tab>
-            </TabList>
+        as={Box}
+        textAlign={"center"}
+        spacing={{ base: 8, md: 14 }}
+        py={{ base: 20, md: 36 }}
+      >
+        <Heading
+          fontWeight={600}
+          fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+          lineHeight={"110%"}
+        >
+          Improving the in-store shopping experience in grocery stores for both the retailer and the consumer.
+        </Heading>
 
-            <TabPanels>
-                <TabPanel>
-                    <RegisterForm />
-                </TabPanel>
+        <Stack
+          direction={"column"}
+          spacing={3}
+          align={"center"}
+          alignSelf={"center"}
+        > 
+          <Tabs align="center" colorScheme='purple'>
+              <TabList>
+                  <Tab>Register</Tab>
+                  <Tab> Login </Tab>
+              </TabList>
 
-                <TabPanel>
-                    <LoginForm />
-                </TabPanel>
-            </TabPanels>
-        </Tabs>
+              <TabPanels>
+                  <TabPanel>
+                      <RegisterForm />
+                  </TabPanel>
+
+                  <TabPanel>
+                      <LoginForm />
+                  </TabPanel>
+              </TabPanels>
+          </Tabs>
 
 
+        </Stack>
       </Stack>
-    </Stack>
+    </Container>
   );
 };
 

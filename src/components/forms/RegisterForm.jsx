@@ -8,7 +8,7 @@ import {
   FormHelperText,
   Button,
 } from "@chakra-ui/react";
-import { notify } from "../components/toasts/toasts";
+import { notify } from "../toasts/toasts";
 import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {

@@ -17,6 +17,7 @@ import TrueLayerTestPage from './components/pages/TrueLayerTestPage';
 
 import { mainStore } from './store/store';
 
+
 function App() {
 
   const isAuth = mainStore((state) => state.isAuth)
@@ -48,7 +49,7 @@ function App() {
       <Routes>
         <Route exact path='/' element = {<LandingPage />}/>
         <Route element={<ProtectedRoute isAllowed={isAuth}/>}>
-          <Route path='/add/product' element={<UploadProductPage/>}/>
+          <Route path='/products/add-product' element={<UploadProductPage/>}/>
           <Route path='/truelayer' element={<TrueLayerTestPage/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
         </Route>
