@@ -14,7 +14,6 @@ import LoginForm from "../forms/LoginForm";
 import RegisterForm from "../forms/RegisterForm";
 
 
-
 const LandingPage = () => {
   return (
     <Container margin="auto" maxW="62rem" width="85%">
@@ -26,7 +25,7 @@ const LandingPage = () => {
       >
         <Heading
           fontWeight={600}
-          fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+          fontSize={{ base: "xl", sm: "4xl", md: "6xl" }}
           lineHeight={"110%"}
         >
           Improving the in-store shopping experience in grocery stores for both the retailer and the consumer.
@@ -54,7 +53,6 @@ const LandingPage = () => {
                   </TabPanel>
               </TabPanels>
           </Tabs>
-
 
         </Stack>
       </Stack>
