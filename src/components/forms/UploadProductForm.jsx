@@ -1,21 +1,18 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FormErrorMessage,
   FormLabel,
   FormControl,
   Input,
-  Textarea,
   Button,
 } from "@chakra-ui/react";
 //import { notify } from "../toasts/toasts";
-import { useNavigate } from "react-router-dom";
 import { FINSHO_COLORS } from "../../utils/globalStyles";
+import productsService from "../../features/products/productsService";
 
 const UploadProductForm = () => {
-  const [image, setImage] = useState("")
-
-  const navigate = useNavigate();
+  const [image, setImage] = useState("");
   const {
     register,
     formState: { errors, isSubmitting },
@@ -24,29 +21,43 @@ const UploadProductForm = () => {
 
   const onSubmit = async (data) => {
     const {
-      productName,
-      productBrand,
-      productCategory,
-      productBarcode,
-      productPrice,
-      productDescription,
+      title,
+      manufacturer,
+      barcode,
+      price,
+      unitOfMeasure,
+      weight,
+      restricted
     } = data;
-    alert(JSON.stringify(data));
+    //alert(JSON.stringify(data));
+
+    const productData = {
+      image: image,
+      title: title,
+      manufacturer: manufacturer,
+      barcode: barcode,
+      price: price,
+      unitOfMeasure: unitOfMeasure,
+      weight: weight,
+      restricted: restricted
+    }
+
+    productsService.addProduct(productData)
   };
 
-  const handleImage = (e) =>{
-    const file = e.target.files[0]
-    setFileToBase(file)
-    console.log(file)
-  }
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    setFileToBase(file);
+    console.log(file);
+  };
 
-  const setFileToBase = (file) =>{
+  const setFileToBase = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onloadend = () =>{
-        setImage(reader.result.toString())
-    }
-  }
+    reader.onloadend = () => {
+      setImage(reader.result.toString());
+    };
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,11 +65,11 @@ const UploadProductForm = () => {
         <FormLabel> Upload Product Image </FormLabel>
         <Input
           type="file"
-          id="productImage"
+          id="image"
           placeholder="Product Image"
           autoFocus
           accept="image/*"
-          {...register('productImage')}
+          {...register("productImage")}
           onChange={handleImage}
         />
         <FormErrorMessage>
@@ -67,103 +78,122 @@ const UploadProductForm = () => {
       </FormControl>
 
       <FormControl mt={4}>
-        <FormLabel> Product Name </FormLabel>
+        <FormLabel> Title </FormLabel>
         <Input
           type="text"
-          id="productName"
-          placeholder="Product Name"
+          id="title"
+          placeholder="Product Title"
           autoFocus
-          {...register("productName", {
-            required: "Please enter a product name",
+          {...register("title", {
+            required: "Please enter a product title",
           })}
-          aria-invalid={errors.productName ? "true" : "false"}
+          aria-invalid={errors.title ? "true" : "false"}
         />
         <FormErrorMessage>
-          {errors.productName && errors.productName?.message}
+          {errors.title && errors.title?.message}
         </FormErrorMessage>
       </FormControl>
 
       <FormControl mt={4}>
-        <FormLabel> Product Brand </FormLabel>
+        <FormLabel> Manufacturer </FormLabel>
         <Input
           type="text"
-          id="productBrand"
-          placeholder="Product Brand"
+          id="manufacturer"
+          placeholder="Product Manufacturer"
           autoFocus
-          {...register("productBrand", {
-            required: "Please enter a product brand",
+          {...register("manufacturer", {
+            required: "Please enter a product manufacturer",
           })}
-          aria-invalid={errors.productBrand ? "true" : "false"}
+          aria-invalid={errors.manufacturer ? "true" : "false"}
         />
         <FormErrorMessage>
-          {errors.productBrand && errors.productBrand?.message}
+          {errors.manufacturer && errors.manufacturer?.message}
         </FormErrorMessage>
       </FormControl>
 
       <FormControl mt={4}>
-        <FormLabel> Product Category </FormLabel>
+        <FormLabel> Barcode </FormLabel>
         <Input
           type="text"
-          id="productCategory"
-          placeholder="Product Category"
-          autoFocus
-          {...register("productCategory", {
-            required: "Please enter a product category",
-          })}
-          aria-invalid={errors.productCategory ? "true" : "false"}
-        />
-        <FormErrorMessage>
-          {errors.productCategory && errors.productCategory?.message}
-        </FormErrorMessage>
-      </FormControl>
-
-      <FormControl mt={4}>
-        <FormLabel> Product Barcode </FormLabel>
-        <Input
-          type="text"
-          id="productBarcode"
+          id="barcode"
           placeholder="Barcode"
           autoFocus
-          {...register("productBarcode", {
+          {...register("barcode", {
             required: "Please enter a product barcode",
           })}
-          aria-invalid={errors.productBarcode ? "true" : "false"}
+          aria-invalid={errors.barcode ? "true" : "false"}
         />
         <FormErrorMessage>
-          {errors.productBarcode && errors.productBarcode?.message}
+          {errors.barcode && errors.barcode?.message}
         </FormErrorMessage>
       </FormControl>
 
       <FormControl mt={4}>
-        <FormLabel> Product Price </FormLabel>
+        <FormLabel> Price </FormLabel>
         <Input
           type="number"
-          id="productPrice"
+          id="price"
           step="0.01"
           placeholder="€"
           autoFocus
-          {...register("productPrice", {
+          {...register("price", {
             required: "Please enter a product price",
           })}
-          aria-invalid={errors.productPrice ? "true" : "false"}
+          aria-invalid={errors.price ? "true" : "false"}
         />
         <FormErrorMessage>
-          {errors.productPrice && errors.productPrice?.message}
+          {errors.price && errors.price?.message}
         </FormErrorMessage>
       </FormControl>
 
       <FormControl mt={4}>
-        <FormLabel> Product Description </FormLabel>
-        <Textarea
-          size="sm"
+        <FormLabel> Unit of Measure </FormLabel>
+        <Input
+          type="text"
+          id="unitOfMeasure"
+          placeholder="Please select one of the 5 options"
           autoFocus
-          {...register("productDescription", {
-            required: "SPlease enter a product description",
+          {...register("unitOfMeasure", {
+            required: "Please select a unit of measure",
           })}
-          aria-invalid={errors.productDescription ? "true" : "false"}
+          aria-invalid={errors.unitOfMeasure ? "true" : "false"}
         />
         <FormErrorMessage>
-          {errors.productDescription && errors.productDescription?.message}
+          {errors.unitOfMeasure && errors.unitOfMeasure?.message}
+        </FormErrorMessage>
+      </FormControl>
+
+      <FormControl mt={4}>
+        <FormLabel> Weight </FormLabel>
+        <Input
+          type="number"
+          id="weight"
+          placeholder="Enter the weight of the product"
+          autoFocus
+          {...register("weight", {
+            required: "Please enter a product weight",
+          })}
+          aria-invalid={errors.price ? "true" : "false"}
+        />
+        <FormErrorMessage>
+          {errors.weight && errors.price?.weight}
+        </FormErrorMessage>
+      </FormControl>
+
+      <FormControl mt={4}>
+        <FormLabel> Is this product restricted (18+)? </FormLabel>
+        <Input
+          type="text"
+          id="restricted"
+          placeholder="Please select one of the 5 options"
+          autoFocus
+          {...register("restricted", {
+            required: "Please select a unit of measure",
+          })}
+          aria-invalid={errors.restricted? "true" : "false"}
+        />
+        <FormErrorMessage>
+          {errors.restricted && errors.restricted?.message}
         </FormErrorMessage>
       </FormControl>
 
