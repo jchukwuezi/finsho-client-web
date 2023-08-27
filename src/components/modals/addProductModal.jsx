@@ -3,17 +3,14 @@ import {
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton,
-    useDisclosure
 } from '@chakra-ui/react'
 import UploadProductForm from '../forms/UploadProductForm'
 
-const addProductModal = ( {isOpen, onClose} ) => {
+const AddProductModal = ( {isOpen, onClose} ) => {
 
     return( 
-        <>
         <Modal
             isOpen={isOpen}
             onClose={onClose}
@@ -28,8 +25,7 @@ const addProductModal = ( {isOpen, onClose} ) => {
             </ModalContent>
             
         </Modal>
-        </>
     )
 }
 
-export default addProductModal
+export default AddProductModal

@@ -5,10 +5,10 @@ const PRODUCT_INFO_API_URL = ''
 const PRODUCTS_API_URL = ''
 const PRODUCTS_ADD_API_URL = ''
 
-const token = mainStore((state) => state.token);
+//const token = mainStore((state) => state.token);
 const config = {
     headers: {
-        Authorization: `Bearer ${token}`
+       // Authorization: `Bearer ${token}`
     }
 }
 

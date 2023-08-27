@@ -14,7 +14,7 @@ import UploadProductPage from './components/pages/UploadProductPage';
 import ProtectedRoute from './utils/ProtectedRoutes';
 import TrueLayerSuccessPage from './components/pages/TrueLayerSuccessPage';
 import TrueLayerTestPage from './components/pages/TrueLayerTestPage';
-
+import ProductPage from './components/pages/ProductPage';
 import { mainStore } from './store/store';
 
 
@@ -49,7 +49,7 @@ function App() {
       <Routes>
         <Route exact path='/' element = {<LandingPage />}/>
         <Route element={<ProtectedRoute isAllowed={isAuth}/>}>
-          <Route path='/products/add-product' element={<UploadProductPage/>}/>
+          <Route path='/products' element={<ProductPage/>}/>
           <Route path='/truelayer' element={<TrueLayerTestPage/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
         </Route>
