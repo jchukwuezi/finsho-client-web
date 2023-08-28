@@ -1,36 +1,43 @@
-import React from 'react'
-import { Flex, Text, Button, useDisclosure, Stack, InputGroup, InputRightElement, Input } from '@chakra-ui/react'
-import AddProductModal from '../modals/AddProductModal'
-import {BsSearch} from 'react-icons/bs'
-
+import React from "react";
+import {
+  Flex,
+  Text,
+  Button,
+  useDisclosure,
+  Stack,
+  InputGroup,
+  InputRightElement,
+  Input,
+} from "@chakra-ui/react";
+import { BsSearch } from "react-icons/bs";
+import MainLayout from "../layouts/MainLayout";
+import AddProductModal from "../modals/AddProductModal"
 
 const ProductPage = () => {
+  const {isOpen, onOpen, onClose} = useDisclosure()
+
   return (
-    <Flex>
-        <Stack direction='row' spacing={3}> 
-            <Button>
-                Add Product
-            </Button>
-
-            <Button>
-                Import CSV
-            </Button>
+    <MainLayout>
+      <Flex direction='column'>
+        <Stack direction="row" spacing={3} justifyContent='flex-end'>
+          <Button onClick={onOpen}>Add Product</Button>
+          <Button>Import CSV</Button>
         </Stack>
 
+        <AddProductModal isOpen={isOpen} onClose={onClose}/>
 
-        <Stack>
-            {/*Search bar for product table*/}
-            <InputGroup>
-                <Input type='text' placeholder='Search'/>
-                <InputRightElement>
-                    <BsSearch size={20}/>
-                </InputRightElement>
-            </InputGroup>
+        <Stack mt={4} justifyContent='flex-end'>
+          {/*Search bar for product table*/}
+          <InputGroup>
+            <Input type="text" placeholder="Search"/>
+            <InputRightElement>
+              <BsSearch size={20} />
+            </InputRightElement>
+          </InputGroup>
         </Stack>
-    
-    
-    </Flex>
-  )
-}
+      </Flex>
+    </MainLayout>
+  );
+};
 
-export default ProductPage
+export default ProductPage;

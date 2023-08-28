@@ -6,6 +6,8 @@ import {
   FormControl,
   Input,
   Button,
+  Checkbox,
+  Select,
 } from "@chakra-ui/react";
 //import { notify } from "../toasts/toasts";
 import { FINSHO_COLORS } from "../../utils/globalStyles";
@@ -27,7 +29,7 @@ const UploadProductForm = () => {
       price,
       unitOfMeasure,
       weight,
-      restricted
+      restricted,
     } = data;
     //alert(JSON.stringify(data));
 
@@ -39,10 +41,10 @@ const UploadProductForm = () => {
       price: price,
       unitOfMeasure: unitOfMeasure,
       weight: weight,
-      restricted: restricted
-    }
+      restricted: restricted,
+    };
 
-    productsService.addProduct(productData)
+    productsService.addProduct(productData);
   };
 
   const handleImage = (e) => {
@@ -75,6 +77,13 @@ const UploadProductForm = () => {
         <FormErrorMessage>
           {errors.productName && errors.productName?.message}
         </FormErrorMessage>
+      </FormControl>
+
+      <FormControl mt={4}>
+        <Checkbox
+          id="restricted"
+          {...register("restricted")}
+        >Is this product restricted? 18+</Checkbox>
       </FormControl>
 
       <FormControl mt={4}>
@@ -148,16 +157,19 @@ const UploadProductForm = () => {
 
       <FormControl mt={4}>
         <FormLabel> Unit of Measure </FormLabel>
-        <Input
-          type="text"
-          id="unitOfMeasure"
-          placeholder="Please select one of the 5 options"
-          autoFocus
-          {...register("unitOfMeasure", {
-            required: "Please select a unit of measure",
-          })}
-          aria-invalid={errors.unitOfMeasure ? "true" : "false"}
-        />
+          <Select
+            placeholder="Product Unit of Measure"
+            {...register("unitOfMeasure", {
+              required: "Please select a unit of measure",
+            })}
+            aria-invalid={errors.unitOfMeasure ? "true" : "false"}
+          >
+            <option value='kilogrammes'> kilogrammes (KG) </option>
+            <option value='grammes'> grammes (G) </option>
+            <option value='litres'> litres (L) </option>
+            <option value='millilitres'> millilitres (ML) </option>
+            <option value='other'> other </option>
+          </Select>
         <FormErrorMessage>
           {errors.unitOfMeasure && errors.unitOfMeasure?.message}
         </FormErrorMessage>
@@ -168,7 +180,7 @@ const UploadProductForm = () => {
         <Input
           type="number"
           id="weight"
-          placeholder="Enter the weight of the product"
+          placeholder="Product Weight"
           autoFocus
           {...register("weight", {
             required: "Please enter a product weight",
@@ -177,23 +189,6 @@ const UploadProductForm = () => {
         />
         <FormErrorMessage>
           {errors.weight && errors.price?.weight}
-        </FormErrorMessage>
-      </FormControl>
-
-      <FormControl mt={4}>
-        <FormLabel> Is this product restricted (18+)? </FormLabel>
-        <Input
-          type="text"
-          id="restricted"
-          placeholder="Please select one of the 5 options"
-          autoFocus
-          {...register("restricted", {
-            required: "Please select a unit of measure",
-          })}
-          aria-invalid={errors.restricted? "true" : "false"}
-        />
-        <FormErrorMessage>
-          {errors.restricted && errors.restricted?.message}
         </FormErrorMessage>
       </FormControl>
 
