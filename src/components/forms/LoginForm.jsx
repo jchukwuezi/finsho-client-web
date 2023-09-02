@@ -17,40 +17,38 @@ import { FINSHO_COLORS } from "../../utils/globalStyles";
 const LoginForm = () => {
   const navigate = useNavigate();
   const REACT_APP_BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
-  const setToken = mainStore((state) => state.setToken)
+  const setToken = mainStore((state) => state.setToken);
 
   const {
     register,
     formState: { errors, isSubmitting },
-    handleSubmit
+    handleSubmit,
   } = useForm();
 
   const onSubmit = async (data) => {
-    const {shopEmail, shopPassword } = data;
+    const { shopEmail, shopPassword } = data;
 
     const response = await fetch(`${REACT_APP_BACKEND_API_URL}/shops/login`, {
-        method: 'POST',
-        headers: { 'Content-Type' : 'application/json'},
-        redentials: 'include',
-        body: JSON.stringify({
-            email: shopEmail,
-            password: shopPassword
-        })
-    })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        email: shopEmail,
+        password: shopPassword,
+      }),
+    });
 
-    const resData = await response.json()
+    const resData = await response.json();
     //console.log("Response data " + JSON.stringify(resData));
-    if (response.ok){
-      const {token, message} = resData;
+    if (response.ok) {
+      const { token, message } = resData;
       setToken(token);
       //notify(message);
-      navigate("/dashboard")
+      navigate("/dashboard");
+    } else {
+      const errorToast = await response.text();
+      notify(errorToast);
     }
-    else{
-      const errorToast = await response.text()
-      notify(errorToast)
-    }
-    
   };
 
   return (
@@ -97,8 +95,13 @@ const LoginForm = () => {
         </FormErrorMessage>
       </FormControl>
 
-
-      <Button mt={4} colorScheme={FINSHO_COLORS.purple} isLoading={isSubmitting} type="submit">
+      <Button
+        mt={4}
+        isLoading={isSubmitting}
+        bgColor={FINSHO_COLORS.purple}
+        color={FINSHO_COLORS.white}
+        type="submit"
+      >
         Login
       </Button>
     </form>

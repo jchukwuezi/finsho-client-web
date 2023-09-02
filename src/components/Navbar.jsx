@@ -1,14 +1,18 @@
 import React from "react";
-import { Flex, Text, Avatar, Heading } from "@chakra-ui/react";
+import { Flex, Text, Avatar, Heading, Button } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import { mainStore } from "../store/store";
 import { FINSHO_COLORS } from "../utils/globalStyles";
 import {BsBarChartFill, BsShop, BsGift} from 'react-icons/bs'
 import {GiShoppingCart} from 'react-icons/gi'
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ children }) => {
+  const navigate = useNavigate()
   const name = mainStore((state) => state.name);
+  const logout = mainStore((state) => state.logout)
+  
 
   return (
     <Flex
@@ -68,7 +72,7 @@ const Navbar = ({ children }) => {
               <Flex mr={[2, 6, 0, 0, 0]} style={{ marginBottom: "1.5rem" }}>
                 <ChakraLink
                   as={ReactRouterLink}
-                  to="/products/add-product"
+                  to="/products"
                   display={["none", "none", "flex", "flex", "flex"]}
                   style={{ marginRight: "0.5rem" }}
                 >
@@ -78,7 +82,7 @@ const Navbar = ({ children }) => {
 
                 <ChakraLink
                   as={ReactRouterLink}
-                  to="/products/add-product"
+                  to="/products"
                   _hover={{ textDecor: "none" }}
                   display={["flex", "flex", "none", "flex", "flex"]}
                 >
@@ -127,9 +131,20 @@ const Navbar = ({ children }) => {
             </Flex>
           </Flex>
 
-          <Flex flexDir="column" alignItems="center" mb={10} mt={5}>
+          <Flex flexDir="column" alignItems="center" mb={7} mt={5}>
             <Avatar my={2} name={name} color={FINSHO_COLORS.purple} backgroundColor={FINSHO_COLORS.white}/>
             <Text textAlign="center">{name}</Text>
+          </Flex>
+
+          <Flex flexDir="column" alignItems="center" mb={10}>
+            <Button bgColor={FINSHO_COLORS.white} color={FINSHO_COLORS.purple} 
+              onClick={()=> {
+                logout()
+                setTimeout(()=>{
+                  navigate("/")                  
+                }, 3000)
+              }}
+            >Logout </Button>
           </Flex>
         </Flex>
       </Flex>

@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { notify } from "../toasts/toasts";
 import { useNavigate } from "react-router-dom";
+import { FINSHO_COLORS } from "../../utils/globalStyles";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -196,7 +197,8 @@ const RegisterForm = () => {
 
       <Button
         mt={4}
-        colorScheme="purple"
+        bgColor={FINSHO_COLORS.purple}
+        color={FINSHO_COLORS.white}
         isLoading={isSubmitting}
         type="submit"
       >

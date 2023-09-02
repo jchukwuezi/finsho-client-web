@@ -12,6 +12,7 @@ import {
 //import { notify } from "../toasts/toasts";
 import { FINSHO_COLORS } from "../../utils/globalStyles";
 import productsService from "../../features/products/productsService";
+import { mainStore } from "../../store/store";
 
 const UploadProductForm = () => {
   const [image, setImage] = useState("");
@@ -20,6 +21,8 @@ const UploadProductForm = () => {
     formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm();
+
+  const token = mainStore((state) => state.token);
 
   const onSubmit = async (data) => {
     const {
@@ -44,7 +47,7 @@ const UploadProductForm = () => {
       restricted: restricted,
     };
 
-    productsService.addProduct(productData);
+    productsService.addProduct(token, productData);
   };
 
   const handleImage = (e) => {
