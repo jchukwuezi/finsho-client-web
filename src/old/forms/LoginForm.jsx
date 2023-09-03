@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {useNavigate} from 'react-router-dom'
-import { notify } from '../../chakra/components/toasts/toasts'
+//import { notify } from '../../chakra/components/toasts/toasts'
 
 const LoginForm = () => {
   const [onboardUrl, setOnboardUrl] = useState("")
@@ -22,12 +22,12 @@ const LoginForm = () => {
     .then(async res => {
         if(!res.ok){
             const errorMsg = await res.text()
-            notify(errorMsg)          
+            //notify(errorMsg)          
         }
 
         else{
           const successMsg = await res.text()
-          notify(successMsg)
+          //notify(successMsg)
         }
     })
 

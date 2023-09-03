@@ -8,11 +8,12 @@ import {
   Button,
   Checkbox,
   Select,
+  useToast
 } from "@chakra-ui/react";
-//import { notify } from "../toasts/toasts";
 import { FINSHO_COLORS } from "../../utils/globalStyles";
 import productsService from "../../features/products/productsService";
 import { mainStore } from "../../store/store";
+import { createSuccessToast, createFailureToast } from "../toasts/toasts";
 
 const UploadProductForm = () => {
   const [image, setImage] = useState("");
@@ -23,6 +24,8 @@ const UploadProductForm = () => {
   } = useForm();
 
   const token = mainStore((state) => state.token);
+
+  const toast = useToast()
 
   const onSubmit = async (data) => {
     const {
@@ -47,7 +50,27 @@ const UploadProductForm = () => {
       restricted: restricted,
     };
 
-    productsService.addProduct(token, productData);
+    const productAdded = await productsService.addProduct(token, productData);
+
+    if(productAdded.status === 200){
+      const successToast = createSuccessToast("Success with adding Product", productAdded.message)
+      toast({
+        title: successToast.title,
+        description: successToast.description,
+        status: successToast.status,
+        duration: successToast.duration
+      })
+    }
+
+    else{
+      const failureToast = createFailureToast("Error with adding Product", productAdded.message)
+      toast({
+        title: failureToast.title,
+        description: failureToast.description,
+        status: failureToast.status,
+        duration: failureToast.duration
+      })
+    }
   };
 
   const handleImage = (e) => {

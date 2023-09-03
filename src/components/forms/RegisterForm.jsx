@@ -7,13 +7,13 @@ import {
   Input,
   FormHelperText,
   Button,
+  useToast
 } from "@chakra-ui/react";
-import { notify } from "../toasts/toasts";
-import { useNavigate } from "react-router-dom";
 import { FINSHO_COLORS } from "../../utils/globalStyles";
+import { createSuccessToast, createFailureToast } from "../toasts/toasts";
 
 const RegisterForm = () => {
-  const navigate = useNavigate();
+  const toast = useToast();
 
   const {
     register,
@@ -38,18 +38,24 @@ const RegisterForm = () => {
     }).then(async (res) => {
       if (!res.ok) {
         const errorMsg = await res.text();
-        //notify(errorMsg);
+        const failureToast = createFailureToast("There's an Error trying to Register your Shop", errorMsg)
+        toast({
+          title: failureToast.title,
+          description: failureToast.description,
+          status: failureToast.status,
+          duration: failureToast.duration
+        })
       }
 
       const successMsg = await res.text();
-      notify(successMsg);
-
-      /*
-      setTimeout(() => {
-        navigate("/login");
-      }, 5000);
-      */
-
+      const successToast = createSuccessToast("Success with Shop Registration. You can now log in", successMsg)
+      toast({
+        title: successToast.title,
+        description: successToast.description,
+        status: successToast.status,
+        duration: successToast.duration
+      })
+      
     });
   };
 

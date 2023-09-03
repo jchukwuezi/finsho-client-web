@@ -4,8 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import {ToastContainer} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import { ChakraProvider } from '@chakra-ui/react';
 import { extendTheme } from '@chakra-ui/react';
 import { Container } from '@chakra-ui/react';
@@ -34,7 +32,6 @@ root.render(
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
-      <ToastContainer />
     </QueryClientProvider>
   </BrowserRouter>  
   </React.StrictMode>
