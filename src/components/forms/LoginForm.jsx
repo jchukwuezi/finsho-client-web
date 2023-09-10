@@ -7,15 +7,17 @@ import {
   Input,
   FormHelperText,
   Button,
+  useToast
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { mainStore } from "../../store/store";
-import { notify } from "../toasts/toasts";
+import { createFailureToast} from "../toasts/toasts";
 import { FINSHO_COLORS } from "../../utils/globalStyles";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const toast = useToast()
   const REACT_APP_BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
   const setToken = mainStore((state) => state.setToken);
 
@@ -43,11 +45,16 @@ const LoginForm = () => {
     if (response.ok) {
       const { token, message } = resData;
       setToken(token);
-      //notify(message);
       navigate("/dashboard");
     } else {
       const errorToast = await response.text();
-      notify(errorToast);
+      const failureToast =  createFailureToast("Error logging in", errorToast)
+      toast({
+        title: failureToast.title,
+        description: failureToast.description,
+        status: failureToast.status,
+        duration: failureToast.duration
+      })
     }
   };
 
