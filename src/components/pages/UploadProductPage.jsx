@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Heading, Stack } from "@chakra-ui/react";
 import UploadProductForm from "../forms/UploadProductForm";
-import Navbar from "../Navbar";
+import MainLayout from "../layouts/MainLayout";
 
 const UploadProductPage = () => {
   return (
-      <Navbar>
+      <MainLayout>
         <Stack
           as={Box}
           textAlign={"center"}
@@ -29,7 +29,7 @@ const UploadProductPage = () => {
             <UploadProductForm />
           </Stack>
         </Stack>
-      </Navbar>
+      </MainLayout>
   );
 };
 

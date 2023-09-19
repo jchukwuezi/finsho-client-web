@@ -14,11 +14,12 @@ import TotalSales from "./sales/TotalSales";
 import MostPopularItem from "./sales/MostPopularItem";
 import MostPopularPromotion from "./sales/MostPopularPromotion";
 import { mainStore } from "../../store/store";
+import Sidebar from "../Sidebar";
 import Navbar from "../Navbar";
 
 const Dashboard = () => {
   return (
-    <Navbar>
+  <Navbar>
       <Flex flexDirection="column" pt={{ base: "120px", md: "75px" }}>
         <Heading
           fontWeight={600}
